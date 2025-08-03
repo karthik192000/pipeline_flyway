@@ -28,12 +28,12 @@ pipeline {
                     sh 'cd flyway/sql'
                     sh """
                 docker -H ${DOCKER_HOST} run  \
-  --name flyway_public \
+  --name flyway_products \
   -e FLYWAY_URL=jdbc:postgresql://host.docker.internal:5432/postgres \
   -e FLYWAY_USER=postgres \
   -e FLYWAY_PASSWORD=admin@123 \
-  -e FLYWAY_SCHEMAS=public \
-  -e FLYWAY_TABLE=flyway_public_history \
+  -e FLYWAY_SCHEMAS=products \
+  -e FLYWAY_TABLE=flyway_products_history \
   -v /products:/flyway/sql \
   flyway/flyway:latest migrate
 
