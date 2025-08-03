@@ -4,7 +4,7 @@ pipeline {
         label 'docker_jenkins_agent'
     }
     environment {
-        GITHUB_CREDS = 'GITHUB_CREDS'
+        GITHUB_CREDS = 'GITHUB_PAT'
     }
     stages{
         stage('Git Checkout'){
