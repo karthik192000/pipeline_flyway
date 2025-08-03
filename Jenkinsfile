@@ -16,7 +16,9 @@ pipeline {
 
         stage('Pull Flyway Docker Image'){
             steps{
-                echo "${DOCKER_HOST}"
+                script{
+                    sh "docker -H ${DOCKER_HOST} pull flyway/flyway:latest"
+                }
             }
         }
     }
