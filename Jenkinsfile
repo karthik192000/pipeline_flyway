@@ -35,7 +35,8 @@ pipeline {
   -e FLYWAY_SCHEMAS=products \
   -e FLYWAY_TABLE=flyway_products_history \
   -v ./products:/flyway/sql \
-  flyway/flyway:latest migrate
+  flyway/flyway:latest \
+  sh -c "flyway migrate && tail -f /dev/null"
 
                      """
                 }
