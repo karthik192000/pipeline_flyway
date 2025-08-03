@@ -21,5 +21,16 @@ pipeline {
                 }
             }
         }
+
+        stage('Run Flyway Migrations for products schema'){
+            steps{
+                script{
+                    sh 'cd flyway/sql/products'
+                    sh "docker -H ${DOCKER_HOST} compose up"
+                    echo "Flyway migrations for products schema completed successfully."
+                    sh "docker -H ${DOCKER_HOST} compose down"
+                }
+            }
+        }
     }
 }
