@@ -34,7 +34,7 @@ pipeline {
   -e FLYWAY_PASSWORD=admin@123 \
   -e FLYWAY_SCHEMAS=public \
   -e FLYWAY_TABLE=flyway_public_history \
-  -v %cd%:/flyway/sql \
+  -v .:/flyway/sql \
   flyway/flyway:latest migrate
 
                      """
