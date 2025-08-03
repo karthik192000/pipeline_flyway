@@ -26,10 +26,18 @@ pipeline {
             steps{
                 script{
                     sh 'cd flyway/sql/products'
-                    sh 'docker-compose version'
-                    // sh "docker-compose ${DOCKER_HOST} up"
-                    // echo "Flyway migrations for products schema completed successfully."
-                    // sh "docker-compose -H ${DOCKER_HOST} down"
+                    sh """
+                docker -H ${DOCKER_HOST} run --rm \
+  --name flyway_public \
+  -e FLYWAY_URL=jdbc:postgresql://host.docker.internal:5432/postgres \
+  -e FLYWAY_USER=postgres \
+  -e FLYWAY_PASSWORD=admin@123 \
+  -e FLYWAY_SCHEMAS=public \
+  -e FLYWAY_TABLE=flyway_public_history \
+  -v %cd%:/flyway/sql \
+  flyway/flyway:latest migrate
+
+                     """
                 }
             }
         }
