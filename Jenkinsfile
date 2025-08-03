@@ -25,7 +25,7 @@ pipeline {
         stage('Run Flyway Migrations for products schema'){
             steps{
                 script{
-                    sh 'cd flyway/sql/products'
+                    sh 'cd flyway/sql'
                     sh """
                 docker -H ${DOCKER_HOST} run --rm \
   --name flyway_public \
@@ -34,7 +34,7 @@ pipeline {
   -e FLYWAY_PASSWORD=admin@123 \
   -e FLYWAY_SCHEMAS=public \
   -e FLYWAY_TABLE=flyway_public_history \
-  -v .:/flyway/sql \
+  -v /products:/flyway/sql \
   flyway/flyway:latest migrate
 
                      """
