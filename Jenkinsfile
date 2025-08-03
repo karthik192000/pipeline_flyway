@@ -26,7 +26,7 @@ pipeline {
             steps{
                 script{
                     sh 'cd flyway/sql/products'
-                    sh 'docker compose version'
+                    sh 'docker-compose version'
                     // sh "docker-compose ${DOCKER_HOST} up"
                     // echo "Flyway migrations for products schema completed successfully."
                     // sh "docker-compose -H ${DOCKER_HOST} down"
