@@ -27,7 +27,7 @@ pipeline {
                 script{
                     sh 'cd flyway/sql'
                     sh """
-                docker -H ${DOCKER_HOST} run --rm \
+                docker -H ${DOCKER_HOST} run  \
   --name flyway_public \
   -e FLYWAY_URL=jdbc:postgresql://host.docker.internal:5432/postgres \
   -e FLYWAY_USER=postgres \
