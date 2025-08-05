@@ -9,27 +9,20 @@ pipeline {
     stages{
         stage('Git Checkout'){
             steps{
-                git credentialsId: "${GITHUB_CREDS}",branch : "master", url: 'https://github.com/karthik192000/flyway_docker.git'
+                git credentialsId: "${GITHUB_CREDS}",branch : "master", url: 'https://github.com/karthik192000/flyway-demo.git'
             }
         
         }
 
-        stage('Pull Flyway Docker Image'){
-            steps{
+        stage('Maven Build'){
                 script{
-                    sh "docker -H ${DOCKER_HOST} pull flyway/flyway:latest"
+                    env.PROJECT_NAME = sh(script: 'grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml', returnStdout: true).trim()
+                    env.VERSION = sh(script: ' grep -oPm1 "(?<=<version>)[^<]+" pom.xml', returnStdout: true).trim()
+                    sh '''
+                         mvn clean install
+                    
+                       '''
                 }
-            }
-        }
-
-        stage('Run Flyway Migrations for products schema'){
-            steps{
-                script{
-                    sh 'cd flyway/sql'
-                    sh 'docker version'
-                    sh """docker-compose -H ${DOCKER_HOST} compose up"""
-                }
-            }
         }
     }
 }
