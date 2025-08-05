@@ -27,7 +27,7 @@ pipeline {
                 script{
                     sh 'cd flyway/sql'
                     sh 'docker version'
-                    sh """docker -H ${DOCKER_HOST} compose up"""
+                    sh """docker-compose -H ${DOCKER_HOST} compose up"""
                 }
             }
         }
