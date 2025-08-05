@@ -26,13 +26,9 @@ pipeline {
             steps{
                 script{
                     sh 'cd flyway/sql'
-                    sh '''#!/bin/bash
-                docker -H $DOCKER_HOST run --name flyway_products -e FLYWAY_URL=jdbc:postgresql://host.docker.internal:5432/postgres \
-                 -e FLYWAY_USER=postgres \
-                 -e FLYWAY_PASSWORD=admin@123 \ 
-                 -e FLYWAY_SCHEMAS=products \
-                 -e FLYWAY_TABLE=flyway_products_history \
-                 -v $(pwd)/products:/flyway/sql flyway/flyway:latest migrate '''
+                    sh 'docker version'
+                    sh 'docker-compose version'
+                    sh """docker-compose -H ${DOCKER_HOST} up -d"""
                 }
             }
         }
