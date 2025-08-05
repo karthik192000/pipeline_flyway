@@ -34,8 +34,8 @@ pipeline {
   -e FLYWAY_PASSWORD=admin@123 \
   -e FLYWAY_SCHEMAS=products \
   -e FLYWAY_TABLE=flyway_products_history \
-  -v $(pwd)/products:/flyway/sql \
-  flyway/flyway:latest migrate\"
+  -v ./products:/flyway/sql \
+  flyway/flyway:latest migrate\
                      """
                 }
             }
