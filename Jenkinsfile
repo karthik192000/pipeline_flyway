@@ -15,6 +15,7 @@ pipeline {
         }
 
         stage('Maven Build'){
+            steps {
                 script{
                     env.PROJECT_NAME = sh(script: 'grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml', returnStdout: true).trim()
                     env.VERSION = sh(script: ' grep -oPm1 "(?<=<version>)[^<]+" pom.xml', returnStdout: true).trim()
@@ -23,6 +24,7 @@ pipeline {
                     
                        '''
                 }
+            }
         }
     }
 }
