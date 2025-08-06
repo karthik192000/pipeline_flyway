@@ -32,10 +32,10 @@ pipeline {
 
     }
 
-        post{
-            always
-            {
-                sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
-            }
-        }    
+        // post{
+        //     always
+        //     {
+        //         sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
+        //     }
+        // }    
 }
