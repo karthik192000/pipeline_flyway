@@ -27,7 +27,14 @@ pipeline {
             steps{
                 sh '''ls -l'''
                 sleep time: 60 , unit: 'SECONDS'
-                // sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""
+                sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""
+            }
+        }
+
+        post{
+            always
+            {
+                sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
             }
         }
 
