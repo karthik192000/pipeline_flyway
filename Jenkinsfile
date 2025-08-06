@@ -25,6 +25,7 @@ pipeline {
 
         stage('Run flyway migrations'){
             steps{
+                export WORKSPACE = $(pwd)
                 sh '''ls -l'''
                 sh '''cat conf/flyway.conf'''
                 sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""
