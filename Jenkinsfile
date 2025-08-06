@@ -14,26 +14,11 @@ pipeline {
         
         }
 
-        stage('Maven Build'){
-            steps {
-                script{
-                    env.PROJECT_NAME = sh(script: 'grep -oPm1 "(?<=<artifactId>)[^<]+" pom.xml', returnStdout: true).trim()
-                    env.VERSION = sh(script: ' grep -oPm1 "(?<=<version>)[^<]+" pom.xml', returnStdout: true).trim()
-                    sh '''
-                         mvn clean install
-                    
-                       '''
-                }
-            }
-        }
-
-        stage('Run spring boot jar'){
-            steps {
-                script{
-                    sh '''
-                        java -jar target/${PROJECT_NAME}-${VERSION}.jar
-                    '''
-                }
+        stage('Verify tooling'){
+            steps{
+                sh """ docker -H ${DOCKER_HOST} info """
+                sh """ docker -H ${DOCKER_HOST} version """
+                sh """ docker -H ${DOCKER_HOST} compose version"""
             }
         }
     }
