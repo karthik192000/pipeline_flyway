@@ -9,7 +9,7 @@ pipeline {
     stages{
         stage('Git Checkout'){
             steps{
-                git credentialsId: "${GITHUB_CREDS}",branch : "master", url: 'https://github.com/karthik192000/flyway-demo.git'
+                git credentialsId: "${GITHUB_CREDS}",branch : "master", url: 'https://github.com/karthik192000/flyway_docker.git'
             }
         
         }
@@ -21,5 +21,13 @@ pipeline {
                 sh """ docker -H ${DOCKER_HOST} compose version"""
             }
         }
+
+
+        stage('Run flyway migrations'){
+            steps{
+                sh '''pwd'''
+            }
+        }
+
     }
 }
