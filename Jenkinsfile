@@ -30,13 +30,13 @@ pipeline {
                     env.WORKSPACE = pwd()
                     sh '''ls -l'''
                     sh '''cat conf/flyway.conf'''
-                    sh """ 
+                    sh '''
                         docker run --rm \
                         -v flyway-volume:/target \
                         -v $(pwd):/source \
                         alpine \
                         sh -c 'cp -r /source/conf/ target/ && cp -r /source/sql/ target/ && ls -l target/'
-                     """
+                     '''
                     // sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""                    
                     
                 }
