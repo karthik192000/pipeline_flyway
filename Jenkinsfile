@@ -32,7 +32,7 @@ pipeline {
                     sh '''cat conf/flyway.conf'''
                     // sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d""" 
                     sh """ echo ${JOB_NAME}"""
-                    sh """docker -H ${DOCKER_HOST} run alpine ls /var/jenkins/workspaces/"""                   
+                    sh """docker -H ${DOCKER_HOST} run -v jenkins-workspaces:/data alpine ls /data"""                   
                     
                 }
             }
