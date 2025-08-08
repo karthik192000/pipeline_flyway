@@ -28,7 +28,7 @@ pipeline {
                 script {
                     // Set the workspace environment variable
                     sh """
-                     export WORKSPACE = ${WORKSPACE}
+                     export WORKSPACE=${WORKSPACE}/${JOB_NAME}
                      docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""                    
                     
                 }
