@@ -37,9 +37,6 @@ pipeline {
         }
 
        } 
-
-    }
-
 post{
     always {
         script {
@@ -47,4 +44,8 @@ post{
             sh "docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"
         }
     }
-}    
+} 
+    }
+
+ 
+  
