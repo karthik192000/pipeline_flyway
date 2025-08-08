@@ -40,8 +40,11 @@ pipeline {
 
     }
 
-    post{
-        always { // This will run regardless of the build result
-                sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
+post{
+    always {
+        script {
+            // Clean up the workspace
+            sh "docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"
         }
-        }
+    }
+}    
