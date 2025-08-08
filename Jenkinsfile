@@ -27,10 +27,9 @@ pipeline {
             steps{
                 script {
                     // Set the workspace environment variable
-                    env.WORKSPACE = pwd()
-                    sh '''ls -l'''
-                    sh '''cat conf/flyway.conf'''
-                    sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""                    
+                    sh """
+                     export WORKSPACE = ${WORKSPACE}
+                     docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""                    
                     
                 }
             }
