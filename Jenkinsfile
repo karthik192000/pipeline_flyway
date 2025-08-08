@@ -36,16 +36,6 @@ pipeline {
             }
         }
 
-
-       stage('Clean up Volume'){
-            steps{
-                                    script {
-                        // Clean up the volume after the migration
-                        sh """ docker -H ${DOCKER_HOST} run --rm -v jenkins-workspaces:/data alpine sh -c "rm -rf /data/${JOB_NAME}" """
-                    }
-            }
-       }
-
        } 
 
     }
@@ -53,9 +43,5 @@ pipeline {
     post{
         always { // This will run regardless of the build result
                 sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
-                // sh """
-                //    docker -H ${DOCKER_HOST} run  -v jenkins-workspaces:/data alpine sh -c "rm -rf /data/${JOB_NAME}"
-                   
-                //  """
         }
         }
