@@ -37,16 +37,14 @@ pipeline {
         }
 
 
-       stage('Clean up Volume')
-        {
+       stage('Clean up Volume'){
             steps{
-                step{
-                    script {
+                                    script {
                         // Clean up the volume after the migration
                         sh """ docker -H ${DOCKER_HOST} run --rm -v jenkins-workspaces:/data alpine sh -c "rm -rf /data/${JOB_NAME}" """
                     }
-                }
             }
+       }
 
        } 
 
