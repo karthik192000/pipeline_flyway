@@ -41,7 +41,10 @@ pipeline {
     post{
         always { // This will run regardless of the build result
                 sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
-                sh """ rm -rf ${WORKSPACE} """
+                sh """
+                   docker -H ${DOCKER_HOST} -v jenkins-workspaces:/data alpine sh -c "rm -rf /data/${WORKSPACE}"
+                   
+                 """
         }
         }    
 }
