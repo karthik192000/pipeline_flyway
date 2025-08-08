@@ -39,9 +39,15 @@ pipeline {
     }
 
         post{
-            always
+            always("Cleanup after build")  // This will run regardless of the build result
+            steps  // Use 'steps' to define the actions to take in the post block
             {
+                step("Remove containers and networks"){
                 sh """ docker -H ${DOCKER_HOST} compose -f docker-compose.yaml down"""
+                }
+                step("Remove workspace directory"){
+                    sh """ rm -rf ${WORKSPACE} """
+                }
             }
         }    
 }
