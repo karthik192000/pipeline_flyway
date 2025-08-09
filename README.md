@@ -115,6 +115,23 @@ All Jenkins components (controller, agents, Flyway containers) use the **same Do
 - Database accessible from Jenkins agents
 
 ---
+### 📸 Migration Automation in Action
+
+These screenshots highlight the automated Flyway migrations workflow with Jenkins, Docker, and volume cleanup, plus migration results in the database.
+
+1. Jenkins Pipeline Execution & Cleanup
+![Jenkins Migration](screenshots\Running_Migrations.png) Flyway migrations inside Docker containers.*
+
+![Jenkins Cleanup](screenshots\Removing_Containers.png) volumes are cleaned up automatically after migrations.*
+
+2. Migration Results in Database
+![Products Schema History](screenshots\Migration_complete_products.png) Flyway history table for products schema—migrations applied in order.*
+
+![Public Schema History](screenshots\Migrations_complete_public.png) Flyway history for public schema—users migrations recorded.*
+
+
+
+---
 
 ## 📬 Repository Links
 
