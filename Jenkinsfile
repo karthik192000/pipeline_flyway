@@ -9,6 +9,15 @@ pipeline {
         FLYWAY_DB_PASSWORD = credentials('FLYWAY_DB_PASSWORD')
     }
     stages{
+        stage('Clean up workspace'){ 
+            steps{
+                script{
+                    cleanWs()
+                }
+            }
+        }
+
+        
         stage('Git Checkout'){
             steps{
                 git credentialsId: "GITHUB_PAT",branch : "master", url: 'https://github.com/karthik192000/flyway_docker.git'
@@ -35,7 +44,7 @@ pipeline {
                      export FLYWAY_DB_USERNAME=${FLYWAY_DB_USERNAME}   
                      export FLYWAY_DB_PASSWORD=${FLYWAY_DB_PASSWORD}
 
-                     docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""                    
+                     docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up --abort-on-container-exit"""                    
                     
                 }
             }
