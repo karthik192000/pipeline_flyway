@@ -119,10 +119,16 @@ All Jenkins components (controller, agents, Flyway containers) use the **same Do
 
 These screenshots highlight the automated Flyway migrations workflow with Jenkins, Docker, and volume cleanup, plus migration results in the database.
 
-1. Jenkins Pipeline Execution & Cleanup
+1. Jenkins Pipeline Execution
 ![Jenkins Migration](screenshots/Running_Migrations.png) Flyway migrations inside Docker containers.*
 
-![Jenkins Cleanup](screenshots/Removing_Containers.png) volumes are cleaned up automatically after migrations.*
+![Jenkins Cleanup](screenshots/Removing_Containers.png) Containers removed after completed migrations.*
+
+
+2. Volume Mounting and cleanup
+
+![Volume Mounted](screenshots/Volume_Mounted.png) Volume Mounted with workspace files
+![Volume Cleanup](screenshots/Volume_Cleanup.png) Volume cleaned up after migrations completed
 
 2. Migration Results in Database
 ![Products Schema History](screenshots/Migration_complete_products.png) Flyway history table for products schema—migrations applied in order.*
