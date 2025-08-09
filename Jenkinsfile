@@ -4,7 +4,6 @@ pipeline {
         label 'docker_jenkins_agent'
     }
     environment {
-        GITHUB_CREDS = 'GITHUB_PAT'
         FLYWAY_DB_URL = credentials('FLYWAY_DB_URL')
         FLYWAY_DB_USERNAME = credentials('FLYWAY_DB_USERNAME')
         FLYWAY_DB_PASSWORD = credentials('FLYWAY_DB_PASSWORD')
@@ -12,7 +11,7 @@ pipeline {
     stages{
         stage('Git Checkout'){
             steps{
-                git credentialsId: "${GITHUB_CREDS}",branch : "master", url: 'https://github.com/karthik192000/flyway_docker.git'
+                git credentialsId: "GITHUB_PAT",branch : "master", url: 'https://github.com/karthik192000/flyway_docker.git'
             }
         
         }
