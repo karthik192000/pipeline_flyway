@@ -17,18 +17,18 @@ pipeline {
         
         }
 
-        stage('Export Flyway Credentials to env file'){
-            steps{
-                script {
-                    // Create the env file with Flyway credentials
-                    sh """
-                    echo "FLYWAY_DB_URL=${FLYWAY_DB_URL}" > flyway.env
-                    echo "FLYWAY_DB_USERNAME=${FLYWAY_DB_USERNAME}" >> flyway.env
-                    echo "FLYWAY_DB_PASSWORD=${FLYWAY_DB_PASSWORD}" >> flyway.env
-                    """
-                }
-            }
-        }
+        // stage('Export Flyway Credentials to env file'){
+        //     steps{
+        //         script {
+        //             // Create the env file with Flyway credentials
+        //             sh """
+        //             echo "FLYWAY_DB_URL=${FLYWAY_DB_URL}" > flyway.env
+        //             echo "FLYWAY_DB_USERNAME=${FLYWAY_DB_USERNAME}" >> flyway.env
+        //             echo "FLYWAY_DB_PASSWORD=${FLYWAY_DB_PASSWORD}" >> flyway.env
+        //             """
+        //         }
+        //     }
+        // }
 
         stage('Verify tooling'){
             steps{
@@ -45,6 +45,9 @@ pipeline {
                     // Set the workspace environment variable
                     sh """
                      export FLYWAY_WORKDIR=${JOB_NAME}
+                     export FLYWAY_DB_URL=${FLYWAY_DB_URL}
+                     export FLYWAY_DB_USERNAME=${FLYWAY_DB_USERNAME}   
+                     export FLYWAY_DB_PASSWORD=${FLYWAY_DB_PASSWORD}
 
                      docker -H ${DOCKER_HOST} compose -f docker-compose.yaml up -d"""                    
                     
