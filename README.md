@@ -1,4 +1,4 @@
-# Automated Flyway Database Migrations with Jenkins, Docker & Named Volume Cleanup
+# Automating Database Migrations with Flyway, Jenkins & Docker
 
 ## 📌 Overview
 
