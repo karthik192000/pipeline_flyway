@@ -118,9 +118,9 @@ All Jenkins components (controller, agents, Flyway containers) use the **same Do
 
 ## 📬 Repository Links
 
-- **pipeline_flyway** — Main orchestration pipeline
-- **flyway_docker** — Flyway migrations & config
-- **jenkins-workspace-volume-cleanup** — Targeted workspace cleanup after migration job
+- **[pipeline_flyway](https://github.com/karthik192000/pipeline_flyway.git)** — Main orchestration pipeline
+- **[flyway_docker](https://github.com/karthik192000/flyway_docker.git)** — Flyway migrations & config
+- **[jenkins-workspace-volume-cleanup](https://github.com/karthik192000/jenkins-workspace-volume-cleanup.git)** — Targeted workspace cleanup after migration job
 
 ---
 
