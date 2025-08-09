@@ -17,19 +17,6 @@ pipeline {
         
         }
 
-        // stage('Export Flyway Credentials to env file'){
-        //     steps{
-        //         script {
-        //             // Create the env file with Flyway credentials
-        //             sh """
-        //             echo "FLYWAY_DB_URL=${FLYWAY_DB_URL}" > flyway.env
-        //             echo "FLYWAY_DB_USERNAME=${FLYWAY_DB_USERNAME}" >> flyway.env
-        //             echo "FLYWAY_DB_PASSWORD=${FLYWAY_DB_PASSWORD}" >> flyway.env
-        //             """
-        //         }
-        //     }
-        // }
-
         stage('Verify tooling'){
             steps{
                 sh """ docker -H ${DOCKER_HOST} info """
