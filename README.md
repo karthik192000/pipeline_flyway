@@ -164,4 +164,5 @@ These screenshots highlight the automated Flyway migrations workflow with Jenkin
 - The docker agent should be pre-equipped with docker and docker compose V2
 - The SCM credentials and Database credentials have to be configured into jenkins via the jenkins controller
 - The docker agent must expose the docker host for the ${DOCKER_HOST} variable to work in the pipeline
+- Refer to ![Flyway Setup](FLYWAY_SETUP.md) to understand how jenkins and the agents were setup.
 
