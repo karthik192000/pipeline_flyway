@@ -5,6 +5,9 @@ pipeline {
     }
     environment {
         GITHUB_CREDS = 'GITHUB_PAT'
+        FLYWAY_DB_URL = credentials('FLYWAY_DB_URL')
+        FLYWAY_DB_USERNAME = credentials('FLYWAY_DB_USERNAME')
+        FLYWAY_DB_PASSWORD = credentials('FLYWAY_DB_PASSWORD')
     }
     stages{
         stage('Git Checkout'){
@@ -12,6 +15,19 @@ pipeline {
                 git credentialsId: "${GITHUB_CREDS}",branch : "master", url: 'https://github.com/karthik192000/flyway_docker.git'
             }
         
+        }
+
+        stage('Export Flyway Credentials to env file'){
+            steps{
+                script {
+                    // Create the env file with Flyway credentials
+                    sh """
+                    echo "FLYWAY_DB_URL=${FLYWAY_DB_URL}" > flyway.env
+                    echo "FLYWAY_DB_USERNAME=${FLYWAY_DB_USERNAME}" >> flyway.env
+                    echo "FLYWAY_DB_PASSWORD=${FLYWAY_DB_PASSWORD}" >> flyway.env
+                    """
+                }
+            }
         }
 
         stage('Verify tooling'){
