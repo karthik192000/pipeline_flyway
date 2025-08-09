@@ -16,18 +16,6 @@ pipeline {
             }
         
         }
-        stage('Define Docker Ignore file'){
-            steps{
-                script{
-                    writeFile(file: '.dockerignore', text: '''
-                    .git
-                    .gitignore
-                    .dockerignore
-                    docker-compose.yaml
-                     ''')
-                }
-            }
-        }
 
         stage('Verify tooling'){
             steps{
