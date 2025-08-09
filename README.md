@@ -132,3 +132,13 @@ All Jenkins components (controller, agents, Flyway containers) use the **same Do
 - Uses a named volume for cross-container file sharing
 - Unifies all operations on a single Docker engine for reliability and maintainability
 - Separates migration and cleanup into distinct, reusable pipelines
+
+
+---
+
+### Notes
+
+- The docker agent should be pre-equipped with docker and docker compose V2
+- The SCM credentials and Database credentials have to be configured into jenkins via the jenkins controller
+- The docker agent must expose the docker host for the ${DOCKER_HOST} variable to work in the pipeline
+
