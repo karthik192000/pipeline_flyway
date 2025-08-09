@@ -124,7 +124,7 @@ All Jenkins components (controller, agents, Flyway containers) use the **same Do
 
 ---
 
-## 🌟 Why This Project Stands Out
+## 🌟 Why This Project is Worth Exploring
 
 - Demonstrates multi-repo CI/CD orchestration
 - Implements secure credentials handling
